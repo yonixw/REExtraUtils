@@ -148,6 +148,35 @@ risingeaglepc.sake.reagspy.com
 risingeaglepc.ms13.reagspy.com
 risingeaglepc.comp.pubsvs.reagspy.com</value>
   </data>
+  <data name="richTextBox3.Text" xml:space="preserve">
+    <value>Add this to shortcut/batch that runs RisingEagle.exe
+Yoni: Didn't find anything similar for DedicatedServer...
+
+RisingEagle Nebula2 viewer (C) 2004 Frontline Studios
+Invasion Interactive Ltd - Rising Eagle
+Command line args:
+------------------
+-help                   show this help
+-startup                startup script to run, default is: home:bin/startup.tcl
+-sceneserver            scene server to use
+-scriptserver           script server to use
+-input                  input binding script to run, default is: home:bin/stdinput.tcl
+-view                   data to load and view with the lighting setup specified (either -stage or the default)
+-stage                  light stage to load, default is: home:bin/stdlight.tcl
+-fullscreen             if present, then nviewer will go fullscreen
+-alwaysontop            present the window will be allways on top
+-w                      width of window to open (default: 640)
+-h                      height of window to open (default: 480)
+-x                      the x position of the window (default: 0)
+-y                      y position of the window (default: 0)
+-connect                if presents, client will try to connect to specified by "ip:port" server 
+-pass					specifies server password (optional)
+-login					if presents, the application will try to login to this account "username,password"
+-safemode               runs in safe mode
+-projdir                the optional project directory (assigns it to the projdir: alias, for use in the user's scripts)
+
+-noautoupdate </value>
+  </data>
   <data name="richTextBox2.Text" xml:space="preserve">
     <value>Press F-11 while in game
 
@@ -202,37 +231,12 @@ sudo pause
 sudo unpause
     unpause session.</value>
   </data>
-  <data name="richTextBox3.Text" xml:space="preserve">
-    <value>Add this to shortcut/batch that runs RisingEagle.exe
-Yoni: Didn't find anything similar for DedicatedServer...
-
-RisingEagle Nebula2 viewer (C) 2004 Frontline Studios
-Invasion Interactive Ltd - Rising Eagle
-Command line args:
-------------------
--help                   show this help
--startup                startup script to run, default is: home:bin/startup.tcl
--sceneserver            scene server to use
--scriptserver           script server to use
--input                  input binding script to run, default is: home:bin/stdinput.tcl
--view                   data to load and view with the lighting setup specified (either -stage or the default)
--stage                  light stage to load, default is: home:bin/stdlight.tcl
--fullscreen             if present, then nviewer will go fullscreen
--alwaysontop            present the window will be allways on top
--w                      width of window to open (default: 640)
--h                      height of window to open (default: 480)
--x                      the x position of the window (default: 0)
--y                      y position of the window (default: 0)
--connect                if presents, client will try to connect to specified by "ip:port" server 
--pass					specifies server password (optional)
--login					if presents, the application will try to login to this account "username,password"
--safemode               runs in safe mode
--projdir                the optional project directory (assigns it to the projdir: alias, for use in the user's scripts)
-
--noautoupdate </value>
-  </data>
   <data name="rtbLinks.Text" xml:space="preserve">
     <value>https://mega.nz/file/topQBJ4S#EE8inJ_KCPprhzZrfzPd6JIyB9VZq1Uurjo27FCB4M8
+
+https://github.com/yonixw/REExtraUtils
+https://github.com/yonixw/Zenchreal_rising-eagle-master
+https://github.com/yonixw/Zenchreal_rising-eagle-soap/tree/master
 
 https://youtu.be/YGvZmEu8gMc?t=8890
 
