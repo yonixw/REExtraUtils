@@ -141,7 +141,8 @@ namespace REExtraUtils
             this.label2.Size = new System.Drawing.Size(401, 118);
             this.label2.TabIndex = 1;
             this.label2.Text = "This will put GameSpy domains\r\nin the local \"hosts\" file for redirect:\r\nC:\\Window" +
-    "s\\System32\\drivers\\etc\\hosts\r\n\r\nNote: This will require to be run as admin";
+    "s\\System32\\drivers\\etc\\hosts\r\n(or in linux: /etc/hosts)\r\n\r\nNote: This will requi" +
+    "re to be run as admin";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnChangeHost

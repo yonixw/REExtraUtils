@@ -38,7 +38,17 @@ namespace REExtraUtils
                 }
             }
 
+            var linux_hostsPath = @"Z:\etc\hosts";
             var hostsPath = @"C:\Windows\System32\drivers\etc\hosts";
+            if (File.Exists(linux_hostsPath))
+            {
+                if (MessageBox.Show("Use the Linux (Wine) hosts path?\n"+linux_hostsPath,"Linux detected",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    hostsPath = linux_hostsPath;
+                }
+            }
+
+
             List<string> originalHostLines = new List<string>();
             try
             {
