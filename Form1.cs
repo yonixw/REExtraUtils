@@ -195,5 +195,32 @@ namespace REExtraUtils
                 return;
             }
         }
+
+        private void txtCustomIP_TextChanged(object sender, EventArgs e)
+        {
+            rbUseTextIP.Checked = true;
+        }
+
+        private void colorCustomIPTxt()
+        {
+            if (rbUseTextIP.Checked)
+            {
+                txtCustomIP.BackColor = Color.LightYellow;
+            }
+            else
+            {
+                txtCustomIP.BackColor = System.Drawing.SystemColors.Window;
+            }
+        }
+
+        private void rbUseTextIP_CheckedChanged(object sender, EventArgs e)
+        {
+            colorCustomIPTxt();
+        }
+
+        private void rbLocalhostIP_CheckedChanged(object sender, EventArgs e)
+        {
+            colorCustomIPTxt();
+        }
     }
 }

@@ -185,6 +185,7 @@ namespace REExtraUtils
             this.txtCustomIP.Size = new System.Drawing.Size(401, 22);
             this.txtCustomIP.TabIndex = 5;
             this.txtCustomIP.Text = "255.255.255.255";
+            this.txtCustomIP.TextChanged += new System.EventHandler(this.txtCustomIP_TextChanged);
             // 
             // rbUseTextIP
             // 
@@ -197,6 +198,7 @@ namespace REExtraUtils
             this.rbUseTextIP.TabIndex = 4;
             this.rbUseTextIP.Text = "Point to \"Fake GameSpy\" IP:";
             this.rbUseTextIP.UseVisualStyleBackColor = true;
+            this.rbUseTextIP.CheckedChanged += new System.EventHandler(this.rbUseTextIP_CheckedChanged);
             // 
             // rbLocalhostIP
             // 
@@ -211,6 +213,7 @@ namespace REExtraUtils
             this.rbLocalhostIP.TabStop = true;
             this.rbLocalhostIP.Text = "Point to this pc (127.0.0.1)";
             this.rbLocalhostIP.UseVisualStyleBackColor = true;
+            this.rbLocalhostIP.CheckedChanged += new System.EventHandler(this.rbLocalhostIP_CheckedChanged);
             // 
             // tabPage2
             // 
