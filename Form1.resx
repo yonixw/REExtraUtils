@@ -177,59 +177,613 @@ Command line args:
 
 -noautoupdate </value>
   </data>
-  <data name="richTextBox2.Text" xml:space="preserve">
-    <value>Press F-11 while in game
+  <data name="rtbAdminCommands.Text" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Segoe UI;}{\f1\fnil\fcharset0 Segoe UI;}}
+{\colortbl ;\red255\green255\blue0;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\ul\f0\fs24 Server Admin Command List:\par
 
-Server Admin Command List:
+\pard\sa200\sl276\slmult1\ulnone sudo \b help\b0\par
+    \f1 this help\f0\par
+sudo \b admin \b0 [admin_password]\par
+    login to admin mode.\par
+sudo \b kick \b0 [user_name] [kick_reason]\par
+    kick specific user (reason is optional).\par
+sudo \b ban \b0 [user_name] [minutes] [opt. ban_reason]\par
+    ban specific player (0-minutes for permanent ban)\par
+sudo \b unban \b0 [user_name]\par
+    unban specific player.\par
+sudo \b warn \b0 [user_name]\par
+    warn specific player.\par
+sudo \b maxwarn \b0 [number_of_warnings]\par
+    set max number of warnings.\par
+sudo \b banlist\b0\par
+    view list of banned players.\par
+sudo \b userlist\b0\par
+    view list of connected players.\par
+sudo \b pass\b0\par
+    set password protection for server.\par
+sudo \b nopass\b0\par
+    remove password protection from the server\par
+sudo \b end_round\b0\par
+    end playing session.\par
+sudo \b friendlyfire \b0 [1/0]\par
+    enable friendly fire.\par
+sudo \b autoteambalance \b0 [1/0]\par
+    enable team auto-balance.\par
+sudo \b tklimit \b0 [number_of_kills]\par
+    change team kill tolerance level.\par
+sudo \b hostname \b0 [new_host_name]\par
+    change server name.\par
+sudo \b timelimit \b0 [minutes]\par
+    change session time.\par
+sudo \b say_all \b0 [message]\par
+    send admin message to all players.\par
+sudo \b say_player \b0 [user_name] [message]\par
+    send admin message to specific player.\par
+sudo \b map?\par
+\b0     view levels list.\par
+sudo \b map \b0 [mission_type] [level_name]\par
+    change map by level name.\par
+    \highlight1\b # Yoni note\highlight0\b0 : mission_type is string, from "sudo map?"\f1  like \b conquest\b0\f0\par
+sudo \b map# \b0 [mission_type] [level_number]\par
+    change map by level list index.\par
+sudo \b pause\b0\par
+    pause session.\par
+sudo \b unpause\b0\par
+    unpause session.\par
+}
+ </value>
+  </data>
+  <data name="rtbCommonCommands.Text" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Segoe UI;}{\f1\fnil\fcharset0 Segoe UI;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red255\green255\blue0;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\f0\fs24 the language is \b tcl\f1  \b0 (very minimal variation)\f0\par
+\par
+the path and folders are like linux? "\b /path/to/object\b0 "\par
+\par
+`\b sel\b0 ` is like cd\par
+so:\par
+`\b sel /sys/ \b0 ` and then `\b sel ..\b0 ` equals `\b sel /\b0 `\par
+\par
+\b dir \b0 gives objects in this path (not commands)\par
+\par
+\b psel \b0 gives current path\par
+\par
+`\b set x y\b0 ` is like `\b x=y\b0 `. to use other command output `\b set x [cmd]\b0 `\f1  like `\b set path [psel]\b0 `\f0\par
+\par
+`\b puts "\f1 a b c\f0 "\b0 ` prints \ul\f1 a b c\f0  \ulnone to console (therefore, to the .log file)\par
+`\b puts $var\b0 ` prints variable "var"\par
+\par
+\b global x\b0  -&gt; access the global variable x. (for functions =&gt; proc)\par
+\par
+Some important places:\par
+\b /usr/level/entities\b0  -&gt; see all objects in loaded level, while playing. Not good to change in runtime.. but good to verify.\par
+\par
+\b /sys/servers/gameserver/player\b0  -&gt; player object, that has info about the main fps player (position, rotation etc)\par
+\par
+\b getcmds \b0 -&gt; get available commands in this path/object. syntax is \par
+\highlight1\{return type\}_name_\{input type\}\highlight0 :\par
 
-sudo help
-sudo admin [admin_password]
-    login to admin mode.
-sudo kick [user_name] [kick_reason]
-    kick specific user (reason is optional).
-sudo ban [user_name] [minutes] [opt. ban_reason]
-    ban specific player (0-minutes for permanent ban)
-sudo unban [user_name]
-    unban specific player.
-sudo warn [user_name]
-    warn specific player.
-sudo maxwarn [number_of_warnings]
-    set max number of warnings.
-sudo banlist
-    view list of banned players.
-sudo userlist
-    view list of connected players.
-sudo pass
-    set password protection for server.
-sudo nopass
-    remove password protection from the server
-sudo end_round
-    end playing session.
-sudo friendlyfire [1/0]
-    enable friendly fire.
-sudo autoteambalance [1/0]
-    enable team auto-balance.
-sudo tklimit [number_of_kills]
-    change team kill tolerance level.
-sudo hostname [new_host_name]
-    change server name.
-sudo timelimit [minutes]
-    change session time.
-sudo say_all [message]
-    send admin message to all players.
-sudo say_player [user_name] [message]
-    send admin message to specific player.
-sudo map?
-    view levels list.
-sudo map [mission_type] [level_name]
-    change map by level name.
-    # Yoni note: mission_type is string, from "sudo map?"
-sudo map# [mission_type] [level_number]
-    change map by level list index.
-sudo pause
-    pause session.
-sudo unpause
-    unpause session.</value>
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720 f - float\par
+{\pntext\f3\'B7\tab}ffff - vector of 4 floats\par
+{\pntext\f3\'B7\tab}i - integer\par
+{\pntext\f3\'B7\tab}s - string\par
+{\pntext\f3\'B7\tab}v - void -&gt; nothing\par
+
+\pard\par
+`\b source path.tcl\b0 ` will load path.tcl file. common places are `\b home:\b0 ` which is the install folder, \par
+so `\b source home:/x.tcl\b0 ` will load x.tcl from the install folder. I don't know if you can put raw\f1  \f0 windows paths like "C:\\Dir\\To\\File.tcl`\par
+
+\pard\sa200\sl276\slmult1\f2\lang9\par
+}
+ {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Segoe UI;}{\f1\fnil\fcharset0 Segoe UI;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red255\green255\blue0;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\f0\fs24 the language is \b tcl\f1  \b0 (very minimal variation)\f0\par
+\par
+the path and folders are like linux? "\b /path/to/object\b0 "\par
+\par
+`\b sel\b0 ` is like cd\par
+so:\par
+`\b sel /sys/ \b0 ` and then `\b sel ..\b0 ` equals `\b sel /\b0 `\par
+\par
+\b dir \b0 gives objects in this path (not commands)\par
+\par
+\b psel \b0 gives current path\par
+\par
+`\b set x y\b0 ` is like `\b x=y\b0 `. to use other command output `\b set x [cmd]\b0 `\f1  like `\b set path [psel]\b0 `\f0\par
+\par
+`\b puts "\f1 a b c\f0 "\b0 ` prints \ul\f1 a b c\f0  \ulnone to console (therefore, to the .log file)\par
+`\b puts $var\b0 ` prints variable "var"\par
+\par
+\b global x\b0  -&gt; access the global variable x. (for functions =&gt; proc)\par
+\par
+Some important places:\par
+\b /usr/level/entities\b0  -&gt; see all objects in loaded level, while playing. Not good to change in runtime.. but good to verify.\par
+\par
+\b /sys/servers/gameserver/player\b0  -&gt; player object, that has info about the main fps player (position, rotation etc)\par
+\par
+\b getcmds \b0 -&gt; get available commands in this path/object. syntax is \par
+\highlight1\{return type\}_name_\{input type\}\highlight0 :\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720 f - float\par
+{\pntext\f3\'B7\tab}ffff - vector of 4 floats\par
+{\pntext\f3\'B7\tab}i - integer\par
+{\pntext\f3\'B7\tab}s - string\par
+{\pntext\f3\'B7\tab}v - void -&gt; nothing\par
+
+\pard\par
+`\b source path.tcl\b0 ` will load path.tcl file. common places are `\b home:\b0 ` which is the install folder, \par
+so `\b source home:/x.tcl\b0 ` will load x.tcl from the install folder. I don't know if you can put raw\f1  \f0 windows paths like "C:\\Dir\\To\\File.tcl`\par
+
+\pard\sa200\sl276\slmult1\f2\lang9\par
+}
+ </value>
+  </data>
+  <data name="rtbTclExample.Text" xml:space="preserve">
+    <value>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Courier New;}{\f1\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green128\blue0;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red0\green0\blue128;\red255\green128\blue0;\red128\green128\blue128;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\cf1\highlight2\f0\fs20\lang9 # Created by yonixw, Sep 2025. For extra challenges.\par
+\cf3\par
+\cf1 # + load this file with `source home:simple.tcl`\par
+\cf3\par
+\par
+\cf1 # + Record function, of position into log, go crouch for floor Y level:\par
+\cf4\b proc\cf3\b0  x \cf5\b\{\{\cf3\b0 desc \b ""\cf5\}\}\cf3\b0  \cf5\b\{\par
+\cf3\b0     \cf1 # Copy this func to gameserver.tcl for ease of use\par
+\cf3     \cf4\b set\cf3\b0  oldCwd2 \cf5\b [\cf3\b0 psel\cf5\b ]\par
+\cf3\b0     \cf4\b if\cf3\b0  \cf5\b\{[\cf3\b0 exists \cf5\b /\cf3\b0 sys\cf5\b /\cf3\b0 servers\cf5\b /\cf3\b0 gameserver\cf5\b ]\cf3\b0  \cf5\b ==\cf3\b0  \cf6 1\cf5\b\}\cf3\b0  \cf5\b\{\par
+\cf3\b0         sel \cf5\b /\cf3\b0 sys\cf5\b /\cf3\b0 servers\cf5\b /\cf3\b0 gameserver\cf5\b /\cf3\b0 player\par
+        \cf4\b set\cf3\b0  p3 \cf5\b [.\cf3\b0 getposition\cf5\b ]\par
+\cf3\b0         \cf4\b set\cf3\b0  q4 \cf5\b [.\cf3\b0 getquat\cf5\b ]\par
+\cf3\b0         \cf4\b puts\cf3\b0  \b "\cf5 [\cf3 D\cf5 ]\cf3  \cf5 $\cf3 desc \cf5 [\cf3 LOC\cf5 ]\cf3  \cf5 $\cf3 p3 \cf5 [\cf3 QUAT\cf5 ]\cf3  \cf5 $\cf3 q4"\b0\par
+    \cf5\b\}\cf3\b0  \cf4\b else\cf3\b0  \cf5\b\{\par
+\cf3\b0         \cf4\b puts\cf3\b0  \b "/sys/.../gamesever not found, are you in a game?"\b0\par
+    \cf5\b\}\par
+\cf3\b0     sel \cf7 $oldCwd2\cf3\par
+\cf5\b\}\par
+\cf3\b0\par
+\cf4\b proc\cf3\b0  turret_enable_docs \cf5\b\{\}\cf3\b0  \cf5\b\{\par
+\cf3\b0     \cf1 # in mission file (conquest / s&amp;d)\par
+\cf3     \cf1 # \{fight_side1 idx\} \{fight_side2 idx\} \{fight_side of turret - 0=fight both\}\par
+\cf3     \cf1 #   .setfightingsides 1 2 0\par
+\cf3     \cf1 # Make them active\par
+\cf3     \cf1 #   .setdefences true\par
+\cf5\b\}\par
+\cf3\b0\par
+\par
+\cf1 # + Adding turrets: NOT RELIABLE IN RUNTIME! Only in map files "*.n2"\par
+# + Start with high id, like 20+\par
+\cf3\par
+\cf1 # + quat = Quaternions and spatial rotation\par
+# + visualise euler/quat:\par
+#   {{\field{\*\fldinst{HYPERLINK https://ninjacalc.mbedded.ninja/calculators/mathematics/geometry/3d-rotations }}{\fldrslt{https://ninjacalc.mbedded.ninja/calculators/mathematics/geometry/3d-rotations\ul0\cf0}}}}\f0\fs20\par
+\cf3\par
+\cf1 # + debug with F11 -&gt; `sel /usr/level/entities`\par
+\cf3\par
+\cf1 # === qjz89\par
+# + mblturret turret_small_qjz89 -&gt; t89s\par
+# + mblturret turret_medium_qjz89 -&gt; t89med\par
+# === g36\par
+# + mblturret turret_ceiling_g36 -&gt; t36ceil\par
+# + mblturret turret_stand_g36 -&gt; t36stand\par
+# === m134\par
+# + mblturret turret_large_m134 -&gt; t134l\par
+# === m307\par
+# + mblturret turret_small_m307 -&gt; t307s\par
+# === m230\par
+# + mblturret turret_mobile_m230 -&gt; t230mobile\par
+# + mblturret turret_medium_m230 -&gt; t230med\par
+# + mblturret turret_large_m230 -&gt; t230l\par
+# + mblturret turret_static_m230 -&gt; t230static\par
+\cf3\par
+\par
+\cf4\b proc\cf3\b0  EXAMPLE_CHANGES_DOC  \cf5\b\{\cf3\b0 id x y z \cf5\b\{\cf3\b0 it_lvl \cf6 4\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 i \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 j \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 k \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 w \cf6 1.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 see_r \cf6 45.0\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 shoot_r \cf6 5.0\cf5\b\}\}\cf3\b0   \cf5\b\{\par
+\cf3\b0     new mblturret \b "turret_stand_g36?\cf5 $\cf3 id"\b0\par
+    sel \b "turret_stand_g36?\cf5 $\cf3 id"\b0\par
+\par
+    \cf5\b .\cf3\b0 setposition \cf7 $x\cf3  \cf7 $y\cf3  \cf7 $z\cf3\par
+    \cf5\b .\cf3\b0 setquat \cf7 $i\cf3  \cf7 $j\cf3  \cf7 $k\cf3  \cf7 $w\cf3\par
+    \cf5\b .\cf3\b0 setentitytype \cf6 5\par
+\cf3     \cf5\b .\cf3\b0 setitlevel \cf7 $it_lvl\cf3\par
+\par
+    \cf5\b .\cf3\b0 setgunrange \cf7 $see_r\cf3  \cf7 $see_r\cf3\par
+    \cf5\b .\cf3\b0 setattackradius \cf7 $shoot_r\cf3\par
+\cf5\b\}\par
+\cf3\b0\par
+\cf4\b proc\cf3\b0  t230static  \cf5\b\{\cf3\b0 id x y z \cf5\b\{\cf3\b0 it_lvl \cf6 4\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 i \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 j \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 k \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 w \cf6 1.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 see_r \cf6 45.0\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 shoot_r \cf6 5.0\cf5\b\}\}\cf3\b0   \cf5\b\{\par
+\cf3\b0     new mblturret \b "turret_static_m230?\cf5 $\cf3 id"\b0\par
+    sel \b "turret_static_m230?\cf5 $\cf3 id"\b0\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000209\cf3  \cf6 -0.320512\cf3  \cf6 0.365803\cf3  \cf6 0.831338\cf3  \cf6 1.138547\cf3  \cf6 0.500607\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf7 $x\cf3  \cf7 $y\cf3  \cf7 $z\cf3\par
+    \cf5\b .\cf3\b0 setquat \cf7 $i\cf3  \cf7 $j\cf3  \cf7 $k\cf3  \cf7 $w\cf3\par
+    \cf5\b .\cf3\b0 setentitytype \cf6 5\par
+\cf3     \cf5\b .\cf3\b0 setitlevel \cf7 $it_lvl\cf3\par
+    \cf5\b .\cf3\b0 setintersection true\par
+    \cf5\b .\cf3\b0 addhitpoint \cf6 0.000000\cf3  \cf6 1.050000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 setturretweapon \b "m230b2"\b0  \b ""\b0\par
+    \cf5\b .\cf3\b0 setservospeed \cf6 25.000000\cf3  \cf6 5.000000\par
+\cf3     \cf5\b .\cf3\b0 setscansector \cf6 360.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 setgunrange \cf7 $see_r\cf3  \cf7 $see_r\cf3\par
+    \cf5\b .\cf3\b0 setattackradius \cf7 $shoot_r\cf3\par
+    \cf5\b .\cf3\b0 setservosounds \b "weapons/turret_large_start_stop"\b0  \b "weapons/turret_large_search_slow"\b0  \b "weapons/turret_large_start_stop"\b0  \b "weapons/turret_large_search_fast"\b0\par
+    \cf5\b .\cf3\b0 setidlesleeptime \cf6 1.000000\par
+\cf3     \cf5\b .\cf3\b0 addammo \cf6 100000\par
+\cf3     new nshapenode base\par
+    sel base\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000209\cf3  \cf6 -0.005649\cf3  \cf6 0.433205\cf3  \cf6 0.831338\cf3  \cf6 0.823684\cf3  \cf6 0.433205\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 0.000209\cf3  \cf6 0.000000\cf3  \cf6 -0.043088\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 -90.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret1base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_static_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1baseDestroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    \cf5\b .\cf3\b0 setentityname \b "turret_static_m230"\b0\par
+    \cf5\b .\cf3\b0 setinitialhealth \cf6 2000.000000\par
+\cf3     \cf5\b .\cf3\b0 setbreakable true\par
+    \cf5\b .\cf3\b0 settotaldestroy false\par
+    new nshapenode extention\par
+    sel extention\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.402117\cf3  \cf6 0.481264\cf3  \cf6 0.457710\cf3  \cf6 0.402117\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 -0.002934\cf3  \cf6 -0.043061\cf3  \cf6 0.100518\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 0.000007\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret1base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_static_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 1\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1baseDestroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    sel \cf5\b ..\par
+\cf3\b0     new nshapenode tank\par
+    sel tank\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000000\cf3  \cf6 -0.051334\cf3  \cf6 0.423050\cf3  \cf6 0.584598\cf3  \cf6 0.784708\cf3  \cf6 0.423125\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 -0.000209\cf3  \cf6 -0.042448\cf3  \cf6 0.887693\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret1_final.dds"\b0\par
+    \cf5\b .\cf3\b0 settexture \b "DiffMap1"\b0  \b "textures:turrets/turret1Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_static_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    new nshapenode gun\par
+    sel gun\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000000\cf3  \cf6 -0.677308\cf3  \cf6 0.000000\cf3  \cf6 0.107063\cf3  \cf6 0.781751\cf3  \cf6 0.134804\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 -0.002546\cf3  \cf6 -0.411466\cf3  \cf6 0.347749\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret1_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_static_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 3\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_static_m230.nvx2"\b0  \b "textures:turrets/turret1Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_200r"\b0\par
+    new nshapenode fire1\par
+    sel fire1\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setrenderpri \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.326353\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.327029\cf3  \cf6 0.215361\cf3  \cf6 0.213575\par
+\cf3     \cf5\b .\cf3\b0 addanimator \b "scl1"\b0\par
+    \cf5\b .\cf3\b0 addanimator \b "rot"\b0\par
+    \cf5\b .\cf3\b0 setposition \cf6 0.006000\cf3  \cf6 -1.400000\cf3  \cf6 -0.025000\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 setscale \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:misc/flashes/autocanon_TP_flash.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 1\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:flash_fire.fx"\b0\par
+    \cf5\b .\cf3\b0 setshapeintersection false\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:misc/flashes/flash_TP_round.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setmaterial \b "default"\b0\par
+    new ntransformanimator scl1\par
+    sel scl1\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "oneshot"\b0\par
+    \cf5\b .\cf3\b0 addscalekey \cf6 0.000000\cf3  \cf6 4.700000\cf3  \cf6 4.700000\cf3  \cf6 4.700000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.020000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.021000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.060000\cf3  \cf6 4.200000\cf3  \cf6 4.200000\cf3  \cf6 4.200000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.061000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.070000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     new ntransformanimator rot\par
+    sel rot\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "loop"\b0\par
+    \cf5\b .\cf3\b0 addeulerkey \cf6 0.000000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.061000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.070000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\}\par
+\cf3\b0\par
+\cf4\b proc\cf3\b0  t230l  \cf5\b\{\cf3\b0 id x y z \cf5\b\{\cf3\b0 it_lvl \cf6 4\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 i \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 j \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 k \cf6 0.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 w \cf6 1.000000\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 see_r \cf6 50.0\cf5\b\}\cf3\b0  \cf5\b\{\cf3\b0 shoot_r \cf6 5.0\cf5\b\}\}\cf3\b0   \cf5\b\{\par
+\cf3\b0     new mblturret \b "turret_large_m230?\cf5 $\cf3 id"\b0\par
+    sel \b "turret_large_m230?\cf5 $\cf3 id"\b0\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.001335\cf3  \cf6 0.001485\cf3  \cf6 0.813887\cf3  \cf6 1.454335\cf3  \cf6 1.454335\cf3  \cf6 1.012933\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf7 $x\cf3  \cf7 $y\cf3  \cf7 $z\cf3\par
+    \cf5\b .\cf3\b0 setquat \cf7 $i\cf3  \cf7 $j\cf3  \cf7 $k\cf3  \cf7 $w\cf3\par
+    \cf5\b .\cf3\b0 setentitytype \cf6 5\par
+\cf3     \cf5\b .\cf3\b0 setitlevel \cf7 $it_lvl\cf3\par
+    \cf5\b .\cf3\b0 setintersection true\par
+    \cf5\b .\cf3\b0 addhitpoint \cf6 0.000000\cf3  \cf6 1.700000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 setturretweapon \b "m230b2"\b0  \b "m230b2"\b0\par
+    \cf5\b .\cf3\b0 setservospeed \cf6 25.000000\cf3  \cf6 5.000000\par
+\cf3     \cf5\b .\cf3\b0 setscansector \cf6 360.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 setgunrange \cf7 $see_r\cf3  \cf7 $see_r\cf3\par
+    \cf5\b .\cf3\b0 setattackradius \cf7 $shoot_r\cf3\par
+    \cf5\b .\cf3\b0 setservosounds \b "weapons/turret_large_start_stop"\b0  \b "weapons/turret_large_search_slow"\b0  \b "weapons/turret_large_start_stop"\b0  \b "weapons/turret_large_search_fast"\b0\par
+    \cf5\b .\cf3\b0 setidlesleeptime \cf6 1.000000\par
+\cf3     \cf5\b .\cf3\b0 addammo \cf6 100000\par
+\cf3     new nshapenode base\par
+    sel base\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.001335\cf3  \cf6 0.001485\cf3  \cf6 0.913410\cf3  \cf6 1.454335\cf3  \cf6 1.454335\cf3  \cf6 0.913410\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 0.010712\cf3  \cf6 0.007306\cf3  \cf6 -0.047610\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 -90.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret2base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_large_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2base_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2baseDestroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    \cf5\b .\cf3\b0 setentityname \b "turret_large_m230"\b0\par
+    \cf5\b .\cf3\b0 setinitialhealth \cf6 2000.000000\par
+\cf3     \cf5\b .\cf3\b0 setbreakable true\par
+    \cf5\b .\cf3\b0 settotaldestroy false\par
+    new nshapenode tank\par
+    sel tank\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.002405\cf3  \cf6 0.000632\cf3  \cf6 0.449834\cf3  \cf6 0.671353\cf3  \cf6 0.760929\cf3  \cf6 0.451664\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 -0.001267\cf3  \cf6 0.005076\cf3  \cf6 1.813960\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_large_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 1\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    new nshapenode gun\par
+    sel gun\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.000000\cf3  \cf6 -0.061496\cf3  \cf6 0.000000\cf3  \cf6 0.219558\cf3  \cf6 0.260541\cf3  \cf6 0.199046\par
+\cf3     \cf5\b .\cf3\b0 setposition \cf6 0.000066\cf3  \cf6 -0.332194\cf3  \cf6 0.325123\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_large_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    new nshapenode fire1\par
+    sel fire1\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setrenderpri \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.326353\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.327029\cf3  \cf6 0.215361\cf3  \cf6 0.213575\par
+\cf3     \cf5\b .\cf3\b0 addanimator \b "scl1"\b0\par
+    \cf5\b .\cf3\b0 addanimator \b "rot"\b0\par
+    \cf5\b .\cf3\b0 setposition \cf6 -0.085000\cf3  \cf6 -1.150000\cf3  \cf6 0.005000\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 setscale \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:misc/flashes/autocanon_TP_flash.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 1\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:flash_fire.fx"\b0\par
+    \cf5\b .\cf3\b0 setshapeintersection false\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:misc/flashes/flash_TP_round.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setmaterial \b "default"\b0\par
+    new ntransformanimator scl1\par
+    sel scl1\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "oneshot"\b0\par
+    \cf5\b .\cf3\b0 addscalekey \cf6 0.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.020000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.021000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.060000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.061000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.070000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     new ntransformanimator rot\par
+    sel rot\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "loop"\b0\par
+    \cf5\b .\cf3\b0 addeulerkey \cf6 0.000000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.061000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.070000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     new nshapenode fire2\par
+    sel fire2\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setrenderpri \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.326353\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.327029\cf3  \cf6 0.215361\cf3  \cf6 0.213575\par
+\cf3     \cf5\b .\cf3\b0 addanimator \b "scl2"\b0\par
+    \cf5\b .\cf3\b0 addanimator \b "rot"\b0\par
+    \cf5\b .\cf3\b0 setposition \cf6 0.095000\cf3  \cf6 -1.150000\cf3  \cf6 0.005000\par
+\cf3     \cf5\b .\cf3\b0 seteuler \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 setscale \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:misc/flashes/autocanon_TP_flash.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 1\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:flash_fire.fx"\b0\par
+    \cf5\b .\cf3\b0 setshapeintersection false\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:misc/flashes/flash_TP_round.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setmaterial \b "default"\b0\par
+    new ntransformanimator scl2\par
+    sel scl2\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "oneshot"\b0\par
+    \cf5\b .\cf3\b0 addscalekey \cf6 0.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.020000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.021000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\cf3  \cf6 2.300000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.060000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\cf3  \cf6 4.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.061000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 addscalekey \cf6 0.070000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     new ntransformanimator rot\par
+    sel rot\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "loop"\b0\par
+    \cf5\b .\cf3\b0 addeulerkey \cf6 0.000000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 45.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.015000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 135.000015\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.030000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 224.999985\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.045000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.061000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     \cf5\b .\cf3\b0 addeulerkey \cf6 0.070000\cf3  \cf6 315.000000\cf3  \cf6 0.000000\cf3  \cf6 90.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     new nshapenode mobile2\par
+    sel mobile2\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 0.089048\cf3  \cf6 -0.760570\cf3  \cf6 0.005050\cf3  \cf6 0.038965\cf3  \cf6 0.443890\cf3  \cf6 0.040854\par
+\cf3     \cf5\b .\cf3\b0 addanimator \b "rot2"\b0\par
+    \cf5\b .\cf3\b0 setposition \cf6 0.000000\cf3  \cf6 0.002719\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_large_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 3\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 addflipflop \cf6 1\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0  \b "textures:turrets/turret2Destroyed_final.dds"\b0\par
+    \cf5\b .\cf3\b0 endflipflopset\par
+    \cf5\b .\cf3\b0 setmaterial \b "Metal_heavy"\b0\par
+    new ntransformanimator rot2\par
+    sel rot2\par
+    \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setchannel \b "time"\b0\par
+    \cf5\b .\cf3\b0 setlooptype \b "oneshot"\b0\par
+    \cf5\b .\cf3\b0 addposkey \cf6 0.000000\cf3  \cf6 0.000000\cf3  \cf6 0.002230\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 addposkey \cf6 0.100000\cf3  \cf6 0.000000\cf3  \cf6 0.100000\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 addposkey \cf6 0.300000\cf3  \cf6 0.000000\cf3  \cf6 0.002230\cf3  \cf6 0.000000\par
+\cf3     sel \cf5\b ..\par
+\cf3\b0     sel \cf5\b ..\par
+\cf3\b0     new nshapenode mobile1\par
+    sel mobile1\par
+    \cf5\b .\cf3\b0 setviewdistance \cf6 100\par
+\cf3     \cf5\b .\cf3\b0 setdynamic true\par
+    \cf5\b .\cf3\b0 setittransparency \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setlocalbox \cf6 -0.081270\cf3  \cf6 -0.760570\cf3  \cf6 0.005049\cf3  \cf6 0.038964\cf3  \cf6 0.443891\cf3  \cf6 0.040854\par
+\cf3     \cf5\b .\cf3\b0 addanimator \b "rot1"\b0\par
+    \cf5\b .\cf3\b0 setposition \cf6 0.000000\cf3  \cf6 0.002719\cf3  \cf6 0.000000\par
+\cf3     \cf5\b .\cf3\b0 settexture \b "DiffMap0"\b0  \b "textures:turrets/turret2_final.dds"\b0\par
+    \cf5\b .\cf3\b0 setint \b "CullMode"\b0  \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 setshader \b "colr"\b0  \b "shaders:default.fx"\b0\par
+    \cf5\b .\cf3\b0 setshader \b "flh1"\b0  \b "shaders:default_breakflsh1.fx"\b0\par
+    \cf5\b .\cf3\b0 setmesh \b "meshes:turrets/turret_large_m230.nvx2"\b0\par
+    \cf5\b .\cf3\b0 setgroupindex \cf6 4\par
+\cf3     \cf5\b .\cf3\b0 setcastdynamicshadows true\par
+    \cf5\b .\cf3\b0 setbatchtype \cf6 0\par
+\cf3     \cf5\b .\cf3\b0 setbatchenable false\par
+    \cf5\b .\cf3\b0 beginflipflopset \cf6 2\par
+\cf3     \cf5\b .\cf3\b0 addflipflop \cf6 0\cf3  \b "meshes:turrets/turret_large_m230.nvx2"\b0 </value>
   </data>
   <data name="rtbLinks.Text" xml:space="preserve">
     <value>https://mega.nz/file/topQBJ4S#EE8inJ_KCPprhzZrfzPd6JIyB9VZq1Uurjo27FCB4M8

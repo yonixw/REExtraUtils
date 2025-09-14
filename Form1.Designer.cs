@@ -59,12 +59,18 @@ namespace REExtraUtils
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.rtbAdminCommands = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.rtbLinks = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.dlgChooseDup = new System.Windows.Forms.OpenFileDialog();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.rtbCommonCommands = new System.Windows.Forms.RichTextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.rtbTclExample = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -77,6 +83,8 @@ namespace REExtraUtils
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -389,13 +397,15 @@ namespace REExtraUtils
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(409, 443);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "3] Arguments Info";
+            this.tabPage3.Text = "3] Undocumented Info";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage8);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(3, 43);
             this.tabControl2.Name = "tabControl2";
@@ -427,25 +437,25 @@ namespace REExtraUtils
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.richTextBox2);
+            this.tabPage6.Controls.Add(this.rtbAdminCommands);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(395, 368);
             this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "Server Admin";
+            this.tabPage6.Text = "F11/Server Admin";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // richTextBox2
+            // rtbAdminCommands
             // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(389, 362);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
-            this.richTextBox2.WordWrap = false;
+            this.rtbAdminCommands.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbAdminCommands.Location = new System.Drawing.Point(3, 3);
+            this.rtbAdminCommands.Name = "rtbAdminCommands";
+            this.rtbAdminCommands.ReadOnly = true;
+            this.rtbAdminCommands.Size = new System.Drawing.Size(389, 362);
+            this.rtbAdminCommands.TabIndex = 0;
+            this.rtbAdminCommands.Text = resources.GetString("rtbAdminCommands.Text");
+            this.rtbAdminCommands.WordWrap = false;
             // 
             // label8
             // 
@@ -456,11 +466,12 @@ namespace REExtraUtils
             this.label8.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.label8.Size = new System.Drawing.Size(403, 40);
             this.label8.TabIndex = 4;
-            this.label8.Text = "This are commands I found, putting here for clarity";
+            this.label8.Text = "This are some new info I found, putting here for clarity";
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.rtbLinks);
+            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Location = new System.Drawing.Point(4, 46);
             this.tabPage4.Name = "tabPage4";
@@ -476,11 +487,23 @@ namespace REExtraUtils
             this.rtbLinks.Location = new System.Drawing.Point(3, 37);
             this.rtbLinks.Name = "rtbLinks";
             this.rtbLinks.ReadOnly = true;
-            this.rtbLinks.Size = new System.Drawing.Size(403, 403);
+            this.rtbLinks.Size = new System.Drawing.Size(403, 365);
             this.rtbLinks.TabIndex = 6;
             this.rtbLinks.Text = resources.GetString("rtbLinks.Text");
             this.rtbLinks.WordWrap = false;
             this.rtbLinks.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbLinks_LinkClicked);
+            this.rtbLinks.TextChanged += new System.EventHandler(this.rtbLinks_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.Location = new System.Drawing.Point(3, 402);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(403, 38);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Download Latest Links";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label9
             // 
@@ -498,6 +521,60 @@ namespace REExtraUtils
             this.dlgChooseDup.FileName = "RisingEagle.exe";
             this.dlgChooseDup.Filter = "*.exe|*.exe";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.rtbCommonCommands);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(395, 368);
+            this.tabPage7.TabIndex = 2;
+            this.tabPage7.Text = "F11/Info";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // rtbCommonCommands
+            // 
+            this.rtbCommonCommands.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbCommonCommands.Location = new System.Drawing.Point(3, 3);
+            this.rtbCommonCommands.Name = "rtbCommonCommands";
+            this.rtbCommonCommands.ReadOnly = true;
+            this.rtbCommonCommands.Size = new System.Drawing.Size(389, 362);
+            this.rtbCommonCommands.TabIndex = 1;
+            this.rtbCommonCommands.Text = resources.GetString("rtbCommonCommands.Text");
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.rtbTclExample);
+            this.tabPage8.Controls.Add(this.label10);
+            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(395, 368);
+            this.tabPage8.TabIndex = 3;
+            this.tabPage8.Text = "Tcl Example";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 3);
+            this.label10.Name = "label10";
+            this.label10.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.label10.Size = new System.Drawing.Size(389, 40);
+            this.label10.TabIndex = 5;
+            this.label10.Text = ".tcl example for recording and creating turret in maps";
+            // 
+            // rtbTclExample
+            // 
+            this.rtbTclExample.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbTclExample.Location = new System.Drawing.Point(3, 43);
+            this.rtbTclExample.Name = "rtbTclExample";
+            this.rtbTclExample.ReadOnly = true;
+            this.rtbTclExample.Size = new System.Drawing.Size(389, 322);
+            this.rtbTclExample.TabIndex = 6;
+            this.rtbTclExample.Text = resources.GetString("rtbTclExample.Text");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -513,6 +590,7 @@ namespace REExtraUtils
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "R.E Extra Utils | v1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -528,6 +606,8 @@ namespace REExtraUtils
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -562,13 +642,19 @@ namespace REExtraUtils
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox rtbAdminCommands;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox rtbLinks;
         private System.Windows.Forms.OpenFileDialog dlgChooseDup;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.RichTextBox rtbCommonCommands;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.RichTextBox rtbTclExample;
+        private System.Windows.Forms.Label label10;
     }
 }
 

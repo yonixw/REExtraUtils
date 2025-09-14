@@ -222,5 +222,71 @@ namespace REExtraUtils
         {
             colorCustomIPTxt();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            rtbCommonCommands.Rtf = rtbCommonCommands.Text;
+            rtbAdminCommands.Rtf = rtbAdminCommands.Text;
+            rtbTclExample.Rtf = rtbTclExample.Text;
+        }
+
+        public static string ReadHtml(string url)
+        {
+            var error = "";
+            var errStack = "";
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.SystemDefault;
+                using (WebClient client = new WebClient())
+                {
+                    client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                    string html = client.DownloadString(url);
+                    MessageBox.Show("Done!");
+                    return html;
+                }
+            }
+            catch (WebException ex)
+            {
+                // Handle web-specific errors (e.g., 404 Not Found, 500 Internal Server Error)
+                error = $"A WebException occurred: {ex.Message}";
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    HttpWebResponse response = (HttpWebResponse)ex.Response;
+                    error += $"\nStatus Code : {(int)response.StatusCode} {response.StatusCode}";
+                    errStack = ex.StackTrace;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                error = $"An unexpected error occurred: {ex.Message}";
+                errStack = ex.StackTrace;
+            }
+            error += "\n\n" + errStack;
+            MessageBox.Show(error, "Error downloading", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return null;
+        }
+
+        private void rtbLinks_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // https://github.com/yonixw/REExtraUtils/releases/download/v1/links.txt
+            var data = ReadHtml("https://github.com/yonixw/REExtraUtils/releases/latest/download/links.txt");
+            if (data != null)
+            {
+                if (data.IndexOf(@"{\") > -1)
+                {
+                    rtbLinks.Rtf = data;
+                }
+                else
+                {
+                    rtbLinks.Text = data;
+                }
+            }
+        }
     }
 }
