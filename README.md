@@ -1,4 +1,5 @@
 # Rising Eagle PC (2008) Extra Utils
+Download: [Release Page](https://github.com/yonixw/REExtraUtils/releases)
 
 # Links:
 * See in exe in Links tab.
